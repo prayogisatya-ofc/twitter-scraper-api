@@ -6,7 +6,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-SESSION_FILE = 'twitter_session.json'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+SESSION_FILE = os.path.join(BASE_DIR, 'src/routes/twitter_session.json')
 
 async def login_and_save_session(username, email, password):
     client = Client('en-US')
