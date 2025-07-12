@@ -12,7 +12,9 @@ load_dotenv()
 
 twitter_bp = Blueprint("twitter", __name__)
 
-SESSION_FILE = "twitter_session.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+SESSION_FILE = os.path.join(BASE_DIR, "twitter_session.json")
 
 @twitter_bp.route("/scrape", methods=["POST"])
 @cross_origin()
