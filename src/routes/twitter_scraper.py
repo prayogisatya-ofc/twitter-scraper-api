@@ -122,14 +122,14 @@ async def scrape_twitter_data(query):
 
         # 🔐 3. Login jika session gagal atau tidak tersedia
         if not session_loaded:
-            await AntiDetectionUtils.random_delay(2, 5)
+            # await AntiDetectionUtils.random_delay(2, 5)
             try:
                 await client.login(
                     auth_info_1=os.getenv("TWITTER_USERNAME"),
                     auth_info_2=os.getenv("TWITTER_EMAIL"),
                     password=os.getenv("TWITTER_PASSWORD")
                 )
-                await AntiDetectionUtils.random_delay(1, 3)
+                # await AntiDetectionUtils.random_delay(1, 3)
                 print("Login berhasil")
 
                 # Simpan session baru
