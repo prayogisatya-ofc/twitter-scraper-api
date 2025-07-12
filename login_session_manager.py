@@ -18,10 +18,10 @@ async def login_and_save_session(username, email, password):
         await client.login(auth_info_1=username, auth_info_2=email, password=password)
         await AntiDetectionUtils.random_delay(1, 3) # Add random delay after successful login
         client.save_cookies(SESSION_FILE)
-        print(f"✅ Login berhasil dan sesi disimpan ke {SESSION_FILE}")
+        print(f"Login berhasil dan sesi disimpan ke {SESSION_FILE}")
         return True
     except Exception as e:
-        print(f"❌ Gagal login: {e}")
+        print(f"Gagal login: {e}")
         return False
 
 async def load_session():
@@ -29,13 +29,13 @@ async def load_session():
     if os.path.exists(SESSION_FILE):
         try:
             client.load_cookies(SESSION_FILE)
-            print("✅ Sesi berhasil dimuat.")
+            print("Sesi berhasil dimuat.")
             return client
         except Exception as e:
-            print(f"⚠️ Gagal memuat sesi: {e}. Sesi mungkin kadaluarsa atau rusak.")
+            print(f"Gagal memuat sesi: {e}. Sesi mungkin kadaluarsa atau rusak.")
             return None
     else:
-        print("ℹ️ File sesi tidak ditemukan.")
+        print("File sesi tidak ditemukan.")
         return None
 
 async def main():

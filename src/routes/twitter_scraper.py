@@ -104,9 +104,9 @@ async def scrape_twitter_data(query):
             try:
                 client.load_cookies(SESSION_FILE)
                 session_loaded = True
-                print("✅ Session loaded")
+                print("Session loaded")
             except Exception as e:
-                print(f"⚠️ Gagal load session: {e}")
+                print(f"Gagal load session: {e}")
 
         # 🔍 2. Coba scraping dengan session
         if session_loaded:
@@ -117,7 +117,7 @@ async def scrape_twitter_data(query):
                     count=20
                 )
             except Exception as e:
-                print(f"⚠️ Session kadaluarsa atau tidak valid: {e}")
+                print(f"Session kadaluarsa atau tidak valid: {e}")
                 session_loaded = False  # tandai untuk login ulang
 
         # 🔐 3. Login jika session gagal atau tidak tersedia
@@ -130,11 +130,11 @@ async def scrape_twitter_data(query):
                     password=os.getenv("TWITTER_PASSWORD")
                 )
                 await AntiDetectionUtils.random_delay(1, 3)
-                print("✅ Login berhasil")
+                print("Login berhasil")
 
                 # Simpan session baru
                 client.save_cookies(SESSION_FILE)
-                print("💾 Session disimpan")
+                print("Session disimpan")
 
                 tweets = await client.search_tweet(
                     query=query,
@@ -142,7 +142,7 @@ async def scrape_twitter_data(query):
                     count=20
                 )
             except Exception as login_err:
-                print(f"❌ Gagal login: {login_err}")
+                print(f"Gagal login: {login_err}")
                 # Return empty list on login failure instead of fallback
                 return []
         
